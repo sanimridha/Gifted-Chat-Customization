@@ -16,7 +16,7 @@ export function App() {
         setMessages([
             {
                 _id: 1,
-                text: "This is a quick reply. Do you love Gifted Chat? (radio) KEEP IT",
+                text: "Welcome from Nitrx Community, hope your journy was amazing!!! ",
                 createdAt: new Date(),
                 quickReplies: {
                     type: "radio", // or 'checkbox',
@@ -43,7 +43,7 @@ export function App() {
             },
             {
                 _id: 2,
-                text: "This is a quick reply. Do you love Gifted Chat? (checkbox)",
+                text: "This is a quick reply. Please wait untill the user come back",
                 createdAt: new Date(),
                 quickReplies: {
                     type: "checkbox", // or 'radio',
@@ -67,6 +67,26 @@ export function App() {
                     name: "React Native",
                 },
             },
+            {
+                _id: 3,
+                text: "My message",
+                createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
+                user: {
+                    _id: 2,
+                    name: "React Native",
+                    avatar: "https://facebook.github.io/react/img/logo_og.png",
+                },
+                image: "https://facebook.github.io/react/img/logo_og.png",
+                // You can also add a video prop:
+                video: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+                // Mark the message as sent, using one tick
+                sent: true,
+                // Mark the message as received, using two tick
+                received: true,
+                // Mark the message as pending with a clock loader
+                pending: true,
+                // Any additional custom parameters are passed through
+            },
         ]);
     }, []);
 
@@ -75,6 +95,25 @@ export function App() {
             GiftedChat.append(previousMessages, messages)
         );
     }, []);
+    // const renderSend = ({ props }) => {
+    //     return (
+    //         <send>
+    //             <TouchableOpacity
+    //                 activeOpacity={0.5}
+    //                 style={{
+    //                     backgroundColor: "#42D180",
+    //                     height: 40,
+    //                     width: 40,
+    //                     borderRadius: 20,
+    //                     justifyContent: "center",
+    //                     alignItems: "center",
+    //                 }}
+    //             >
+    //                 <Ionicons name="send-sharp" size={24} color="white" />
+    //             </TouchableOpacity>
+    //         </send>
+    //     );
+    // };
 
     return (
         <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
@@ -108,11 +147,13 @@ export function App() {
                 </TouchableOpacity>
             </View>
             <GiftedChat
+                alwaysShowSend={true}
                 messages={messages}
                 onSend={messages => onSend(messages)}
                 user={{
                     _id: 1,
                 }}
+                // renderSend={renderSend}
             />
         </View>
     );
